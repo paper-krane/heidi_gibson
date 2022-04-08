@@ -1,0 +1,68 @@
+*, *:before, *:after {
+    box-sizing: border-box !important;
+}
+html {
+    width: 100%;
+    overflow-x: hidden;
+    background-color: $site-bg; 
+    
+    body {
+        overflow-x: hidden;
+    }
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: $font-stack;
+}
+
+
+// Links
+a, a:visited {
+    color: $primary-color;
+    -webkit-tap-highlight-color: transparent;
+    transition: $transition;
+}
+a:hover, a:focus {
+    color: $secondary-color;
+}
+a *, button * {
+    pointer-events: none;
+}
+
+
+// Images
+img,
+video {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+}
+
+
+// Helper styles
+.hg__layer-container-l {
+    @media #{$l-and-up} {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+
+        * {
+            pointer-events: auto;
+        }
+    }
+}
+.hg__container {
+    max-width: 90%;
+    margin: 0 auto;
+
+    @media #{$xxl-and-up} {
+        max-width: 80%;
+    }
+}
