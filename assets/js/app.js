@@ -7,11 +7,36 @@ class HG {
         console.log(`Website by Paper Krane (https://paperkrane.io)`);
         console.log(`Heidi Gibson scripts initialized... Beep boop bop beep boop!`);
 
+        this.navBarListener();
         this.navToggleInit();
         this.cursorFollow();
         this.cursorExpand();
         this.parallaxListener();
+        this.headerReveal();
+        this.heroReveal();
         this.slider();
+        this.productReveal();
+        this.aboutParallax();
+        this.articleReveal();
+    }
+
+    // Navbar Background
+    navBarListener() {
+        const navBar = document.querySelector('#hg__navbar');
+
+        this.navBarClass(navBar);
+
+        window.addEventListener('scroll', (e) => {
+            this.navBarClass(navBar);
+        }, false);
+    }
+
+    navBarClass(navBar) {
+        if (window.scrollY === 0) {
+            navBar.classList.remove('hg__background');
+        } else {
+            navBar.classList.add('hg__background');
+        }
     }
 
     // Nav toggle
@@ -142,23 +167,122 @@ class HG {
         if (sliderContainer) {
             const slider = tns({
                 container: sliderContainer,
-                items: 2,
+                items: 1,
                 autoplay: false,
                 draggable: true,
                 nav: false,
                 controlsContainer: '#hg__slider-controls',
                 preventScrollOnTouch: 'force',
                 speed: 800,
+                loop: false,
+                rewind: true,
                 responsive: {
+                    600: {
+                        items: 2
+                    },
                     992: {
                         items: 3
                     },
-                    1600: {
+                    2000: {
                         items: 4
                     }
                 }
             });
         }
+    }
+
+    headerReveal() {
+        const headers = document.querySelectorAll('#hg__navbar, #hg__mobile-navbar');
+
+        ScrollTrigger.batch(headers, {
+            onEnter: (batch) => {gsap.to(batch, {
+                opacity: 1,
+                duration: 2,
+                delay: 2.5
+            })}
+        });
+    }
+
+    heroReveal() {
+        const images = document.querySelectorAll('#hg__hero-image .swipe, #hg__hero-accent-1 .swipe');
+        const content = document.querySelectorAll('#hg__hero-content .hg__hero-content-container');
+        const finalImage = document.querySelectorAll('#hg__hero-content #hg__hero-accent-2 .swipe');
+
+        ScrollTrigger.batch(images, {
+            onEnter: (batch) => {gsap.to(batch, {
+                height: 0,
+                ease: "power3",
+                duration: 2,
+                delay: .25
+            })}
+        });
+
+        ScrollTrigger.batch(content, {
+            onEnter: (batch) => {gsap.to(batch, {
+                opacity: 1,
+                duration: 2,
+                delay: 1.25
+            })}
+        });
+
+        ScrollTrigger.batch(finalImage, {
+            onEnter: (batch) => {gsap.to(batch, {
+                width: 0,
+                ease: "power3",
+                duration: 2,
+                delay: 1.5
+            })}
+        });
+    }
+
+    productReveal() {
+        const products = document.querySelectorAll('.hg__product');
+        
+        if (products.length > 0) {
+            ScrollTrigger.batch(products, {
+                onEnter: (batch) => {gsap.to(batch, {
+                    opacity: 1, 
+                    y: 0,
+                    stagger: 0.25, 
+                    duration: 1.5,
+                    delay: 0,
+                    scrollTrigger: {
+                        trigger: "#hg__slider"
+                    }
+                })}
+            });
+        }
+    }
+
+    articleReveal() {
+        const articles = document.querySelectorAll('#hg__image-banner .hg__col .swipe');
+
+        ScrollTrigger.batch(articles, {
+            onEnter: (batch) => {gsap.to(batch, {
+                width: 0,
+                ease: "power3",
+                duration: 2
+            })}
+        });
+    }
+
+    aboutParallax() {
+        gsap.to("#hg__about-image", {
+            y: () => {
+                if (window.innerWidth > 992) {
+                    return 32;
+                } else {
+                    return 0;
+                }
+            },
+            ease: "power1",
+            scrollTrigger: {
+              trigger: "#hg__about-image",
+              start: "top bottom",
+              end: "100% 140px",
+              scrub: 3
+            }, 
+        });
     }
 }
 

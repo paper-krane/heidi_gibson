@@ -34,6 +34,15 @@ a *, button * {
 }
 
 
+// Text selection
+::selection {
+    background: $highlight-color;
+}
+::-moz-selection {
+    background: $highlight-color;
+}
+
+
 // Images
 img,
 video {
@@ -59,10 +68,29 @@ video {
     }
 }
 .hg__container {
-    max-width: 90%;
+    width: 90%;
     margin: 0 auto;
 
-    @media #{$xxl-and-up} {
-        max-width: 80%;
+    &.small {
+        max-width: 1100px;
+    }
+
+    @media #{$xl-and-up} {
+        width: 80%;
+    }
+}
+.hg__signature {
+    font-size: 4rem;
+    line-height: 1;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    color: $primary-color;
+    font-family: $signature-font-stack;
+    font-weight: $signature-font-weight;
+    font-style: normal;
+    display: block;
+
+    @media #{$m-and-up} {
+        font-size: 5rem;
     }
 }

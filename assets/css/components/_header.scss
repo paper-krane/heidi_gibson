@@ -162,7 +162,12 @@
         height: 140px;
         opacity: 1;
         visibility: visible;
-        // background-color: transparent;
+        background-color: transparent;
+        transition: background-color 0.4s ease;
+
+        &.hg__background {
+            background-color: $site-bg;
+        }
 
         .hg__navbar-container {
             height: 140px;
@@ -246,6 +251,20 @@
                 color: $primary-color !important;
             }
         }
+    }
+}
+
+html[data-js] {
+    @media #{$xl-and-up} {
+        #hg__navbar {
+            opacity: 0;
+        }
+    }
+}
+
+html[data-no-js] {
+    #hg__navbar {
+        background-color: $site-bg;
     }
 }
 
