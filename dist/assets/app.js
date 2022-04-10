@@ -194,13 +194,27 @@ class HG {
     headerReveal() {
         const headers = document.querySelectorAll('#hg__navbar, #hg__mobile-navbar');
 
-        ScrollTrigger.batch(headers, {
-            onEnter: (batch) => {gsap.to(batch, {
-                opacity: 1,
-                duration: 2,
-                delay: 2.5
-            })}
-        });
+        if (window.innerWidth > 1280) {
+            ScrollTrigger.batch(headers, {
+                onEnter: (batch) => {gsap.to(batch, {
+                    opacity: 1,
+                    duration: 2,
+                    delay: 2.5
+                })}
+            });
+        }
+
+        window.addEventListener('resize', (e) => {
+            if (window.innerWidth > 1280) {
+                ScrollTrigger.batch(headers, {
+                    onEnter: (batch) => {gsap.to(batch, {
+                        opacity: 1,
+                        duration: 2,
+                        delay: 2.5
+                    })}
+                });
+            }
+        }, false);
     }
 
     heroReveal() {
@@ -208,37 +222,69 @@ class HG {
         const content = document.querySelectorAll('#hg__hero-content .hg__hero-content-container');
         const finalImage = document.querySelectorAll('#hg__hero-content #hg__hero-accent-2 .swipe');
 
-        ScrollTrigger.batch(images, {
-            onEnter: (batch) => {gsap.to(batch, {
-                height: 0,
-                ease: "power3",
-                duration: 2,
-                delay: .25
-            })}
-        });
+        if (window.innerWidth > 1280) {
+            ScrollTrigger.batch(images, {
+                onEnter: (batch) => {gsap.to(batch, {
+                    height: 0,
+                    ease: "power3",
+                    duration: 2,
+                    delay: .25
+                })}
+            });
 
-        ScrollTrigger.batch(content, {
-            onEnter: (batch) => {gsap.to(batch, {
-                opacity: 1,
-                duration: 2,
-                delay: 1.25
-            })}
-        });
+            ScrollTrigger.batch(content, {
+                onEnter: (batch) => {gsap.to(batch, {
+                    opacity: 1,
+                    duration: 2,
+                    delay: 1.25
+                })}
+            });
 
-        ScrollTrigger.batch(finalImage, {
-            onEnter: (batch) => {gsap.to(batch, {
-                width: 0,
-                ease: "power3",
-                duration: 2,
-                delay: 1.5
-            })}
-        });
+            ScrollTrigger.batch(finalImage, {
+                onEnter: (batch) => {gsap.to(batch, {
+                    width: 0,
+                    ease: "power3",
+                    duration: 2,
+                    delay: 1.5
+                })}
+            });
+        }
+
+        window.addEventListener('resize', (e) => {
+            if (window.innerWidth > 1280) {
+                ScrollTrigger.batch(images, {
+                    onEnter: (batch) => {gsap.to(batch, {
+                        height: 0,
+                        ease: "power3",
+                        duration: 2,
+                        delay: .25
+                    })}
+                });
+    
+                ScrollTrigger.batch(content, {
+                    onEnter: (batch) => {gsap.to(batch, {
+                        opacity: 1,
+                        duration: 2,
+                        delay: 1.25
+                    })}
+                });
+    
+                ScrollTrigger.batch(finalImage, {
+                    onEnter: (batch) => {gsap.to(batch, {
+                        width: 0,
+                        ease: "power3",
+                        duration: 2,
+                        delay: 1.5
+                    })}
+                });
+            }
+        }, false);
     }
 
     productReveal() {
         const products = document.querySelectorAll('.hg__product');
         
-        if (products.length > 0) {
+        if (products.length > 0 && window.innerWidth > 1280) {
             ScrollTrigger.batch(products, {
                 onEnter: (batch) => {gsap.to(batch, {
                     opacity: 1, 
@@ -252,18 +298,49 @@ class HG {
                 })}
             });
         }
+
+        window.addEventListener('resize', (e) => {
+            if (products.length > 0 && window.innerWidth > 1280) {
+                ScrollTrigger.batch(products, {
+                    onEnter: (batch) => {gsap.to(batch, {
+                        opacity: 1, 
+                        y: 0,
+                        stagger: 0.25, 
+                        duration: 1.5,
+                        delay: 0,
+                        scrollTrigger: {
+                            trigger: "#hg__slider"
+                        }
+                    })}
+                });
+            }
+        }, false);
     }
 
     articleReveal() {
         const articles = document.querySelectorAll('#hg__image-banner .hg__col .swipe');
 
-        ScrollTrigger.batch(articles, {
-            onEnter: (batch) => {gsap.to(batch, {
-                width: 0,
-                ease: "power3",
-                duration: 2
-            })}
-        });
+        if (window.innerWidth > 1280) {
+            ScrollTrigger.batch(articles, {
+                onEnter: (batch) => {gsap.to(batch, {
+                    width: 0,
+                    ease: "power3",
+                    duration: 2
+                })}
+            });
+        }
+
+        window.addEventListener('resize', (e) => {
+            if (window.innerWidth > 1280) {
+                ScrollTrigger.batch(articles, {
+                    onEnter: (batch) => {gsap.to(batch, {
+                        width: 0,
+                        ease: "power3",
+                        duration: 2
+                    })}
+                });
+            }
+        }, false);
     }
 
     aboutParallax() {
